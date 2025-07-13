@@ -13,7 +13,7 @@ def build_soybean_train(target_fips=None):
     counties = df.to_json(orient='records', lines=False)
     counties = json.loads(counties)
 
-    path = "./../data/soybean_train.json"
+    path = "./data/soybean_train.json"
 
     data = []
     for county_info in counties:
@@ -35,7 +35,7 @@ def build_soybean_val(target_fips=None):
     counties = df.to_json(orient='records', lines=False)
     counties = json.loads(counties)
 
-    path = "./../data/soybean_val.json"
+    path = "./data/soybean_val.json"
 
     data = []
     for county_info in counties:
@@ -67,7 +67,7 @@ def get_json_obj(year, county_info):
                 "short_term": short_term,
                 "long_term": long_term,
             },
-            "USDA": "USDA/data/Soybean/{}/USDA_Soybean_County_{}.csv".format(year, year),
+            "USDA": "USDA Crop Dataset/data/Soybean/{}/USDA_Soybean_County_{}.csv".format(year, year),
             "sentinel": [
                 "Sentinel-2 Imagery/data/{}/{}/Agriculture_{}_{}_{}-04-01_{}-06-30.h5".format(year, state, fips[:2],
                                                                                               state, year, year),
@@ -85,7 +85,7 @@ def get_short_HRRR_obj(state, fips, year, months=[i + 1 for i in range(12)]):
     file_paths = []
     for month in months:
         month = str(month).zfill(2)
-        path = "WRF-HRRR/data/{}/{}/HRRR_{}_{}_{}-{}.csv".format(year, state, fips[:2], state, year, month)
+        path = "WRF-HRRR Computed Dataset/data/{}/{}/HRRR_{}_{}_{}-{}.csv".format(year, state, fips[:2], state, year, month)
         file_paths.append(path)
     return file_paths
 
@@ -96,7 +96,7 @@ def get_long_HRRR_obj(state, fips, years, months=[i + 1 for i in range(12)]):
         year_paths = []
         for month in months:
             month = str(month).zfill(2)
-            path = "WRF-HRRR/data/{}/{}/HRRR_{}_{}_{}-{}.csv".format(year, state, fips[:2], state, year, month)
+            path = "WRF-HRRR Computed Dataset/data/{}/{}/HRRR_{}_{}_{}-{}.csv".format(year, state, fips[:2], state, year, month)
             year_paths.append(path)
         file_paths.append(year_paths)
     return file_paths
