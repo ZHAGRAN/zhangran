@@ -54,9 +54,10 @@ class Sentinel_Dataset(Dataset):
 
 
 if __name__ == '__main__':
-    root_dir = "/mnt/data/Tiny CropNet"
+    root_dir = "/mnt/data/common_data/multi_modal/Tiny-CropNet"
+    
     # train = "./../data/soybean_train.json"
-    train = "./../data/soybean_val.json"
+    train = "./data/soybean_train.json"
     dataset = Sentinel_Dataset(root_dir, train)
     train_loader = torch.utils.data.DataLoader(dataset, batch_size=1)
 
