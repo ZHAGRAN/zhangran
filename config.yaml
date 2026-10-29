@@ -1,0 +1,190 @@
+# ============================================================
+# GEO 行业 & 竞品早报 配置文件
+# Webhook key 建议用环境变量 WECOM_WEBHOOK_KEY, 不要写死在此文件
+# ============================================================
+
+# 企业微信群机器人 key (Webhook URL 中 ?key= 后面那串); 留空则读环境变量
+webhook_key: ""
+
+# 回看窗口(天): 每天跑用 1; 手动补跑几天的量可调大
+lookback_days: 1
+
+# 每个来源/每个竞品最多收录条数
+max_items_per_source: 5
+max_items_per_competitor: 4
+max_industry_items: 8
+
+report:
+  title: GEO 行业 & 竞品早报
+
+# ---------------- 行业整体动态 ----------------
+industry:
+  # 行业媒体关键词: 用于过滤无关新闻, 命中任意一个即收录
+  keywords:
+    - GEO
+    - 生成式引擎
+    - AI搜索
+    - AI 搜索
+    - AEO
+    - AI营销
+    - AI 营销
+    - 大模型营销
+    - 智能体营销
+    - AI流量
+    - AI 流量
+    - searchGPT
+    - LLM优化
+    - AI SEO
+  sources:
+    - name: 钛媒体
+      type: rss
+      url: https://www.tmtpost.com/feed
+    - name: 量子位
+      type: rss
+      url: https://www.qbitai.com/feed
+    - name: 爱范儿
+      type: rss
+      url: https://www.ifanr.com/feed
+    - name: 极客公园
+      type: rss
+      url: https://www.geekpark.net/rss
+    - name: 199IT
+      type: rss
+      url: https://www.199it.com/feed
+    # 36氪/虎嗅官方 RSS 已有反爬(36氪返回验证页, 虎嗅超时), 其文章会被
+    # 下方 Google News 聚合查询覆盖; 如需直接订阅可自建 RSSHub:
+    # - name: 36氪
+    #   type: rss
+    #   url: http://你的rsshub地址/36kr
+    # 聚合搜索(走 Google News, 免费无 key, 需海外网络/GitHub Actions)
+    - name: GEO聚合
+      type: aggregate
+      extra_queries:
+        - "生成式引擎优化 GEO"
+        - "GEO 生成式引擎 优化 平台"
+        - "AI搜索 营销 品牌"
+
+# ---------------- 竞品动态 ----------------
+# 每个竞品: keywords 用于从行业媒体里捞"提及该竞品"的新闻(建议写具体, 太宽会误抓)
+# sources 里:
+#   - type: gnews  -> Google News 关键词搜索(免费, 覆盖媒体/官网被收录的报道)
+#   - type: rss    -> 直接订阅 feed, channel 标注来源渠道(官网/公众号)
+competitors:
+  - name: Profound
+    keywords: [Profound]
+    sources:
+      - type: gnews
+        query: "Profound AI search visibility"
+        channel: 媒体报道
+      # 官网博客如有 RSS 可加:
+      # - type: rss
+      #   url: https://www.profound.com/blog/rss.xml
+      #   channel: 官网
+
+  - name: Otterly.ai
+    keywords: [Otterly]
+    sources:
+      - type: gnews
+        query: "Otterly AI brand monitoring"
+        channel: 媒体报道
+
+  - name: Semrush
+    keywords: [Semrush]
+    sources:
+      - type: gnews
+        query: "Semrush AI SEO GEO"
+        channel: 媒体报道
+
+  - name: Peec AI
+    keywords: [Peec AI, PeecAI]
+    sources:
+      - type: gnews
+        query: "Peec AI GEO"
+        channel: 媒体报道
+
+  - name: 透镜GEO
+    keywords: [透镜GEO, 透镜 GEO]
+    sources:
+      - type: gnews
+        query: "透镜GEO"
+        channel: 媒体报道
+
+  - name: 爱搜GEO
+    keywords: [爱搜GEO, 爱搜]
+    sources:
+      - type: gnews
+        query: "爱搜GEO"
+        channel: 媒体报道
+
+  - name: 智推时代
+    keywords: [智推时代]
+    sources:
+      - type: gnews
+        query: "智推时代 GEO"
+        channel: 媒体报道
+
+  - name: 迈富时
+    keywords: [迈富时, MarketingForce]
+    sources:
+      - type: gnews
+        query: "迈富时 AI"
+        channel: 媒体报道
+
+  - name: 百分点科技
+    keywords: [百分点科技, 百分点]
+    sources:
+      - type: gnews
+        query: "百分点科技 AI"
+        channel: 媒体报道
+
+  - name: 泓动数据
+    keywords: [泓动数据, 泓动]
+    sources:
+      - type: gnews
+        query: "泓动数据"
+        channel: 媒体报道
+
+  - name: 增长超人
+    keywords: [增长超人]
+    sources:
+      - type: gnews
+        query: "增长超人"
+        channel: 媒体报道
+
+  - name: 微盟
+    keywords: [微盟]
+    sources:
+      - type: gnews
+        query: "微盟 AI 智能"
+        channel: 媒体报道
+
+  - name: 腾讯GEO
+    keywords: [腾讯GEO, 腾讯混元, 腾讯元宝, ima知识库]
+    sources:
+      - type: gnews
+        query: "腾讯 GEO 生成式引擎"
+        channel: 媒体报告
+
+  - name: 360 GEO
+    keywords: [360 GEO, 纳米AI搜索, 纳米AI, 360智脑]
+    sources:
+      - type: gnews
+        query: "360 纳米AI GEO"
+        channel: 媒体报道
+
+  - name: 其他大厂GEO
+    keywords: [豆包, 文心一言, 夸克, Kimi, DeepSeek, 知乎直答]
+    sources:
+      - type: gnews
+        query: "大厂 GEO 生成式引擎优化 动态"
+        channel: 媒体报道
+
+# ---------------- 公众号接入(可选, 推荐) ----------------
+# 公众号没有官方免费 RSS, 两种方案:
+# 1) 自建 wechat2rss (github.com/ttttmr/wechat2rss), 为每个公众号生成 feed 后填入:
+#    - name: 公众号-新榜
+#      type: rss
+#      url: http://127.0.0.1:8080/feeds/xxxx.xml   # 自建服务地址
+#      channel: 公众号
+# 2) 自部署 RSSHub 的微信公众号路由(公共实例大多不可用)
+# 配好后加到对应竞品的 sources 里即可, 脚本无需改动
